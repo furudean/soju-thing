@@ -34,7 +34,7 @@ async def upload() -> Response:
                 body = await result.text()
                 # rewrite to https as 0x0.st returns insecure http links
                 upload_url = urlparse(body)._replace(scheme='https')
-                return Response('', status=201, headers={'Location': upload_url.geturl()})
+                return Response(upload_url, status=201, headers={'Location': upload_url.geturl()})
 
         except aiohttp.ClientError as e:
             return Response(f'upload failed: {e}', status=500)
