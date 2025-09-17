@@ -1,4 +1,4 @@
-# soju thing
+# sojuthing
 
 proxies uploads to [0x0.st](https://0x0.st). it's for a [soju](https://soju.im)
 and [senpai](https://git.sr.ht/~delthas/senpai/) setup.
@@ -11,10 +11,18 @@ else!
 
 ## development
 
-```
+```bash
 quart run --reload
 ```
 
 ## deploy
 
-i don't know yet...
+```bash
+# build
+uv sync  # set up a virtualenv with up to date dependencies
+uv build
+
+# on server
+pip install dist/*.whl --force
+hypercorn sojuthing.main:app
+```

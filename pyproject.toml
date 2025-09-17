@@ -1,16 +1,16 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "soju-nil"
+name = "sojuthing"
 dynamic = ["version"]
 requires-python = ">=3.12"
 classifiers = ["Private :: Do Not Upload"]
-dependencies = [
-    "aiohttp>=3.12.15",
-    "quart>=0.20.0",
-]
+dependencies = ["aiohttp>=3.12.15", "hypercorn>=0.17.3", "quart>=0.20.0"]
+
+[tool.setuptools]
+packages = ["sojuthing"]
 
 [dependency-groups]
 dev = []

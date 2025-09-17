@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
-set -e
+set -euxo pipefail
 cd "$(dirname "$0")"
 
-npm run build
+uv build
 
-rsync -zhave ssh --progress build irc.milkmedicine.net:/home/node
+scp dist/*.whl irc.milkmedicine.net:/home/nil
 ssh irc.milkmedicine.net "
-    cd /home/node && \
-    rm -rf irc.milkmedicine.net && \
-    mv build irc.milkmedicine.net && \
-    chown -R node:node irc.milkmedicine.net && \
-    systemctl restart milkweb.service
+    sudo su - nil bash -c '
+        cd /home/nil && \
+        . .venv/bin/activate && \
+        uv pip install *.whl --reinstall
+    ' && \
+    systemctl restart sojuthing.service
 "

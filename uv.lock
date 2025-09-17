@@ -473,16 +473,18 @@ wheels = [
 ]
 
 [[package]]
-name = "soju-nil"
+name = "sojuthing"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },
+    { name = "hypercorn" },
     { name = "quart" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "aiohttp", specifier = ">=3.12.15" },
+    { name = "hypercorn", specifier = ">=0.17.3" },
     { name = "quart", specifier = ">=0.20.0" },
 ]
 
